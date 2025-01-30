@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Money Converter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        input, button {
+            margin: 10px;
+            padding: 10px;
+            font-size: 16px;
+
+            background-color:#fff3d4;
+
+            color: #8a8372;
+
+            
+        }
+    </style>
+</head>
+<body>
+    <h2>Money Converter</h2>
+    <input type="number" id="pesoInput" placeholder="Enter amount in PHP">
+    <br>
+    <button onclick="convert('usd')">Convert to Dollar</button>
+    <button onclick="convert('eur')">Convert to Euro</button>
+    <button onclick="convert('gbp')">Convert to Pounds</button>
+    <button onclick="convert('thb')">Convert to Baht</button>
+    <button onclick="convert('jpy')">Convert to Yen</button>
+    <h3 id="result"></h3>
+
+    <script>
+        const exchangeRates = {
+            usd: 0.018, 
+            eur: 0.016, 
+            gbp: 0.014, 
+            thb: 0.65, 
+            jpy: 2.72 
+        };
+       function convert(currency) {
+    let pesoAmount = parseFloat(document.getElementById("pesoInput").value);
+    if (!pesoAmount || pesoAmount <= 0) return;
+    
+    let convertedAmount = (pesoAmount * exchangeRates[currency]).toFixed(2);
+    document.getElementById("result").innerText = `Converted Amount: ${convertedAmount} ${currency.toUpperCase()}`;
+}
+    </script>
+</body>
+</html>
